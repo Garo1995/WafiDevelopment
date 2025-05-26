@@ -417,10 +417,15 @@ input[type="range"]::-webkit-slider-thumb {
     width: calc(25% - 12px);
     background: #FFFFFF;
     border-radius: 12px;
-    padding: 10px;
+    padding: 12px;
     height: 141px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
+.partners-six img{
+    height: 100%;
+}
 .coop-height-sm{
     height: 109px;
 }

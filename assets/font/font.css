@@ -40,18 +40,6 @@
 
 
 
-@font-face {
-    font-family: 'TT Travels';
-    src: url('TTTravels-ExtraBold.eot');
-    src: local('TT Travels ExtraBold'), local('TTTravels-ExtraBold'),
-    url('TTTravels-ExtraBold.eot?#iefix') format('embedded-opentype'),
-    url('TTTravels-ExtraBold.woff2') format('woff2'),
-    url('TTTravels-ExtraBold.woff') format('woff'),
-    url('TTTravels-ExtraBold.ttf') format('truetype');
-    font-weight: 800;
-    font-style: normal;
-}
-
 
 @font-face {
     font-family: 'Montserrat';
@@ -90,17 +78,7 @@
 }
 
 
-@font-face {
-    font-family: 'Montserrat';
-    src: url('Montserrat-ExtraBold.eot');
-    src: local('Montserrat ExtraBold'), local('Montserrat-ExtraBold'),
-    url('Montserrat-ExtraBold.eot?#iefix') format('embedded-opentype'),
-    url('Montserrat-ExtraBold.woff2') format('woff2'),
-    url('Montserrat-ExtraBold.woff') format('woff'),
-    url('Montserrat-ExtraBold.ttf') format('truetype');
-    font-weight: 800;
-    font-style: normal;
-}
+
 
 
 
