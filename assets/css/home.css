@@ -1195,7 +1195,9 @@ input[type="range"]::-webkit-slider-thumb {
     .last-price {
         font-size: 35px;
     }
-
+    .partner-photo img {
+        border-radius: 12px;
+    }
 }
 @media (max-width: 575px){
     .residential-box {
