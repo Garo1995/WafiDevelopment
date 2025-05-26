@@ -180,26 +180,31 @@ p{
     position: relative;
     margin-top: 140px;
 }
-.technical-support:before{
-    display: none;
 
-}
- .technical-support:before, .cooperating-main:before, .residential-main:before{
+ .technical-support:before,  .residential-main:before{
     content: "";
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
     top: -324px;
     background-image: url(../img/blur-1.png);
     background-repeat: no-repeat;
     background-size: cover;
-    height: 1280px;
+    height: 2308px;
     width: 100%;
-
 }
-@media  (max-width: 1500px){
-    .technical-support:before{
-        display: block;
+@media (max-width: 1920px){
+     .technical-support:before{
+        height: 1608px;
+    }
+}
+@media (max-width: 1300px){
+     .technical-support:before{
+        height: 1208px;
+    }
+}
+@media (max-width: 1920px){
+     .residential-main:before{
+        height: 1308px;
     }
 }
 .support-flex{
@@ -435,7 +440,9 @@ input[type="range"]::-webkit-slider-thumb {
     margin-top: 140px;
 }
 
-
+.cooperating-main:before {
+    top: -200px;
+}
 
 
 .cooperating-mobile{
