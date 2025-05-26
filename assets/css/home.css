@@ -180,6 +180,10 @@ p{
     position: relative;
     margin-top: 140px;
 }
+.technical-support:before{
+    display: none;
+
+}
  .technical-support:before, .cooperating-main:before, .residential-main:before{
     content: "";
     position: absolute;
@@ -191,9 +195,13 @@ p{
     background-size: cover;
     height: 1280px;
     width: 100%;
-    background-position: center;
-}
 
+}
+@media  (max-width: 1500px){
+    .technical-support:before{
+        display: block;
+    }
+}
 .support-flex{
     gap: 16px;
     position: relative;
@@ -427,9 +435,7 @@ input[type="range"]::-webkit-slider-thumb {
     margin-top: 140px;
 }
 
-.cooperating-main:before {
-    top: -200px;
-}
+
 
 
 .cooperating-mobile{
