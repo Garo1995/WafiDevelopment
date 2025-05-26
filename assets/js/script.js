@@ -1,7 +1,3 @@
-$(document).ready(function () {
-    $(".phone").mask('+7 (999)-999-99-99');
-});
-
 
 $(function () {
     let Accordion = function (el, multiple) {
@@ -32,7 +28,14 @@ $(function () {
     let accordion = new Accordion($('#accordion'), false);
 });
 
+$('.percentage-box').on('click', function () {
+    $('.percentage-box').removeClass('percentage-active');
+    $(this).addClass('percentage-active');
+});
 
+$('.percentage-count').on('click', function () {
+    $('.percentage-box').removeClass('percentage-active');
+});
 
 
 let becomeSwiper = new Swiper(".become-partner-slider", {
@@ -40,6 +43,13 @@ let becomeSwiper = new Swiper(".become-partner-slider", {
     spaceBetween: 5,
     loop: true,
     speed: 600,
+    autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+    },
+    fadeEffect: { crossFade: true },
+    virtualTranslate: true,
+    effect: "fade",
     pagination: {
         el: ".become-pagination",
         clickable: true,

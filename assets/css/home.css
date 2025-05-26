@@ -20,20 +20,35 @@ p{
     color: #161616;
 
 }
+
+
 .btn{
-    padding: 15px 23px;
-    color: #ffffff;
-    border-radius: 50px;
-    transition: 0.3s;
-    white-space: nowrap;
     background: #00AEEF;
+    border-radius: 50px;
+    color: #fff;
     font-size: 15px;
-    width: max-content;
-}
-.btn:hover{
-    background: #161616;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: 0.3s;
+    position: relative;
+    padding: 14px 23px;
 }
 
+.btn:before{
+    content: "";
+    position: absolute;
+    border-radius: 50px;
+    border: 1px solid #00AEEF;
+    width: calc(100% - 6px);
+    height: 39px;
+    top: 2px;
+    left: 2px;
+    transition: 0.3s;
+
+}
+.btn:hover:before{
+    border: 1px solid #FFFFFF;
+}
 
 
 .become-partner-flex{
@@ -119,7 +134,7 @@ p{
     top: auto;
     margin: 0;
     bottom: 40px;
-    z-index: 9;
+    z-index: 19;
 }
 .swiper-button-prev:hover, .swiper-button-next:hover{
     background: #00AEEF;
@@ -165,17 +180,18 @@ p{
     position: relative;
     margin-top: 140px;
 }
-.technical-support:before, .cooperating-main:before, .residential-main:before{
+ .cooperating-main:before, .residential-main:before{
     content: "";
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: -300px;
-    background-image: url("../img/blur-1.png");
+    top: -424px;
+    background-image: url(../img/blur-1.png);
     background-repeat: no-repeat;
     background-size: cover;
-    height: 1154px;
+    height: 1280px;
     width: 100%;
+    background-position: center;
 }
 
 .support-flex{
@@ -189,6 +205,8 @@ p{
     border-radius: 12px;
     padding: 36px 20px 24px 24px;
     height: 165px;
+    box-shadow: 0px 2px 4px 0px #00000040;
+    border: 1px solid #A1A1A14D;
 }
 .support-box span{
     background: #00AEEF0D;
@@ -320,14 +338,22 @@ input[type="range"]::-webkit-slider-thumb {
     border: 1px solid #0505051A;
     padding: 13px 18px;
     white-space: nowrap;
-
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .percentage-box span{
     color: #A1A1A1;
     font-weight: 500;
     font-size: 15px;
+    transition: 0.3s;
     line-height: 20px;
+}
+.percentage-active {
+    border: 1px solid #050505;
+}
+.percentage-active span{
+    color: #161616;
 }
 .percentage-count{
     max-width: 151px;
@@ -359,36 +385,41 @@ input[type="range"]::-webkit-slider-thumb {
     line-height: 36px;
     white-space: nowrap;
 }
-.partner-btn{
-    background: #00AEEF;
-    border-radius: 50px;
-    color: #fff;
-    font-size: 15px;
-    font-weight: 500;
-    white-space: nowrap;
-    transition: 0.3s;
-    position: relative;
-    padding: 14px 23px;
+
+
+
+
+.log-hig-one img{
+    height: 36px;
 }
-.partner-btn:hover{
-    background: #161616;
+
+.log-hig-two img{
+    height: 32px;
 }
-.partner-btn:before{
-    content: "";
-    position: absolute;
-    border-radius: 50px;
-    border: 1px solid #FFFFFF;
-    width: calc(100% - 6px);
-    height: 39px;
-    top: 2px;
-    left: 2px;
+
+.log-hig-three img{
+    height: 33px;
+}
+
+.log-hig-four img{
+    height: 58px;
 }
 
 
+.log-hig-five img{
+    height: 31px;
+}
 
+.log-hig-six img{
+    height: 82px;
+}
 
-
-
+.log-hig-seven img{
+    height: 23px;
+}
+.log-hig-eight img{
+    height: 30px;
+}
 
 
 
@@ -894,9 +925,6 @@ input[type="range"]::-webkit-slider-thumb {
         margin-top: 100px;
     }
 
-    .technical-support:before {
-        top: -200px;
-    }
     h2 {
         font-size: 32px;
         line-height: 41px;
@@ -1011,10 +1039,13 @@ input[type="range"]::-webkit-slider-thumb {
         line-height: 36px;
     }
     .cooperating-box {
-        height: 111px;
+        height: 100px;
+        margin-bottom: 12px;
     }
 
-
+    .log-hig-two img {
+        height: 30px;
+    }
 
 
 

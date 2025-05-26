@@ -83,8 +83,8 @@
     -ms-flex-align: center;
     -webkit-align-items: center;
     align-items: center;
-    -webkit-animation: zoomIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-    animation: zoomIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    -webkit-animation: zoomIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    animation: zoomIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
     padding: 5px;
 }
 @-webkit-keyframes zoomIn {
@@ -191,7 +191,9 @@
     transition: 0.3s;
     padding-bottom: 10px;
 }
-
+.error input{
+    border-bottom: 1px solid red;
+}
 .modal__inp input:focus{
     color: #ffffff;
     border-bottom: 1px solid rgba(255,255,255,1);
@@ -284,11 +286,9 @@
     left: 2px;
     transition: 0.3s;
     border: 1px solid #FFFFFF;
-
 }
 .btn-send:hover:before{
     border: 1px solid #00ADEE;
-
 }
 
 .char-count{
