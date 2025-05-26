@@ -185,7 +185,7 @@ p{
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: -424px;
+    top: -324px;
     background-image: url(../img/blur-1.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -429,7 +429,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .cooperating-main:before {
-    top: 0;
+    top: -200px;
 }
 
 
