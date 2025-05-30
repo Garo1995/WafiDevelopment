@@ -211,6 +211,9 @@ $(window).on('click', function (event) {
 
 
 
+
+
+
 const range = document.getElementById('range-single');
 const minVal = document.getElementById('min-val');
 const finalPrice = document.getElementById('final-price');
@@ -256,9 +259,10 @@ function calculateFinal() {
     const val = parseInt(range.value);
     const customPercent = parseFloat(customPercentInput.value.replace(',', '.'));
 
-    if (!isNaN(customPercent)) {
-        const total = val * 1_000_000 * (1 + customPercent / 100);
-        finalPrice.innerText = `${total.toLocaleString('ru-RU')}`;
+    if (!isNaN(customPercent) && customPercentInput.value.trim() !== '') {
+        // Показываем именно комиссию (процент от суммы), а не сумму + комиссию
+        const commission = val * 1_000_000 * (customPercent / 100);
+        finalPrice.innerText = `${Math.round(commission).toLocaleString('ru-RU')}`;
         return;
     }
 
@@ -270,22 +274,16 @@ function calculateFinal() {
     const projectData = commissionTable[selectedProject];
     const percent = projectData?.[selectedType];
 
-    // Если для выбранного типа нет процентов, например "Кладовые"
     if (percent === undefined) {
         const total = val * 1_000_000;
         finalPrice.innerText = `${total.toLocaleString('ru-RU')}`;
         return;
     }
+
     const commission = val * 1_000_000 * (percent / 100);
     finalPrice.innerText = `${Math.round(commission).toLocaleString('ru-RU')}`;
-
-
-    if (customPercent) {
-        const customCommission = val * 1_000_000 * (customPercent / 100);
-        finalPrice.innerText = `${Math.round(customCommission).toLocaleString('ru-RU')}`;
-        return;
-    }
 }
+
 
 document.querySelectorAll("#projects li").forEach(li => {
     li.addEventListener("click", () => {
@@ -334,14 +332,27 @@ function updateTypeVisibility() {
         kladLi.style.display = "list-item";
     }
 }
-
 document.querySelectorAll("#projects li").forEach(li => {
     li.addEventListener("click", () => {
         document.querySelectorAll("#projects li").forEach(item => item.classList.remove("active"));
         li.classList.add("active");
         selectedProject = li.getAttribute("data-project");
 
-        updateTypeVisibility();  // <-- сюда добавляем вызов
+        // Очистка кастомного процента при клике по проектам
+        customPercentInput.value = '';
+        updateTypeVisibility();
+        calculateFinal();
+    });
+});
+
+document.querySelectorAll("#types li").forEach(li => {
+    li.addEventListener("click", () => {
+        document.querySelectorAll("#types li").forEach(item => item.classList.remove("active"));
+        li.classList.add("active");
+        selectedType = li.getAttribute("data-type");
+
+        // Очистка кастомного процента при клике по типам
+        customPercentInput.value = '';
         calculateFinal();
     });
 });
