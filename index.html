@@ -430,22 +430,22 @@
            <div class="swiper video-project-slider">
                <div class="swiper-wrapper">
                    <div class="swiper-slide">
-                       <div class="video-project-box">
+                       <div class="video-project-box open_modal"  data-src="https://vkvideo.ru/video_ext.php?oid=-225265300&id=456239038&hd=2&autoplay=1">
                            <img src="./assets/img/video-pic-1.webp" alt="video">
                        </div>
                    </div>
                    <div class="swiper-slide">
-                       <div class="video-project-box">
+                       <div class="video-project-box open_modal"  data-src="https://vkvideo.ru/video_ext.php?oid=-225265300&id=456239037&hd=2&autoplay=1">
                            <img src="./assets/img/video-pic-2.webp" alt="video">
                        </div>
                    </div>
                    <div class="swiper-slide">
-                       <div class="video-project-box">
+                       <div class="video-project-box open_modal"  data-src="https://vkvideo.ru/video_ext.php?oid=-225265300&id=456239040&hd=2&autoplay=1">
                            <img src="./assets/img/video-pic-3.webp" alt="video">
                        </div>
                    </div>
                    <div class="swiper-slide">
-                       <div class="video-project-box">
+                       <div class="video-project-box open_modal"  data-src="https://vkvideo.ru/video_ext.php?oid=-225265300&id=456239039&hd=2&autoplay=1">
                            <img src="./assets/img/video-pic-4.webp" alt="video">
                        </div>
                    </div>
@@ -556,6 +556,9 @@
     </div>
 </footer>
 
+
+
+
 <div id="modal" class="modal">
     <div class="modal-content">
         <div class="modal-registration">
@@ -597,13 +600,26 @@
 </div>
 
 
+<div id="video-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-video">
+            <div class="close"></div>
+            <div class="modal-video-fon" data-src="">
+                <!-- Видео будет вставлено сюда -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 
 <script src="assets/js/jquery-3.6.4.js"></script>
 <script src="https://snipp.ru/cdn/maskedinput/jquery.maskedinput.min.js"></script>
-
 <script src="assets/js/swiper-bundle.min.js"></script>
 <script src="assets/js/script.js"></script>
-
 
 <script>
     $.mask.definitions['h'] = "[0|1|3|4|5|6|7|9]"

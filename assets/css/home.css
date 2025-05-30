@@ -301,7 +301,9 @@ p{
     align-items: center;
 
 }
-
+.body_fix{
+    overflow: hidden;
+}
 .value {
     width: 100%;
     font-weight: 500;
@@ -413,15 +415,24 @@ input[type="range"]::-webkit-slider-thumb {
     opacity: 1;
 }
 
-
-
-
-
-
-
-
-
-
+.modal-video{
+    position: relative;
+    padding-top: 50px;
+    max-width: 853px;
+    width: 100%;
+}
+.modal-video .close{
+    top: 0;
+    right: 0;
+}
+.modal-video-fon{
+    max-width: 853px;
+    height: 480px;
+}
+.modal-video-fon iframe{
+    width: 100%;
+    height: 100%;
+}
 #max-val{
     position: relative;
 }
@@ -1397,7 +1408,9 @@ input[type="range"]::-webkit-slider-thumb {
         height: 1628px;
     }
 
-
+    .modal-video-fon{
+        height: 380px;
+    }
 }
 @media (max-width: 435px){
     .become-partner-name h4 {

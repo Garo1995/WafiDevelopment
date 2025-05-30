@@ -103,114 +103,56 @@ let cooperatingSwiper = new Swiper(".cooperating-slider", {
 
 
 
-
 $('.open_modal').on('click', function () {
-    var attr = $(this).attr('data-val');
-    var modal = $('#' + attr);
-    modal.removeClass('out');
-    modal.fadeIn();
+    var videoSrc = $(this).data('src');
+    var modalId = $(this).data('val');
+
+    if (videoSrc) {
+        // Открыть окно с видео
+        var modal = $('#video-modal');
+        var container = modal.find('.modal-video-fon');
+        container.html('<iframe src="' + videoSrc + '" width="853" height="480" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>');
+        modal.removeClass('out').fadeIn();
+    } else if (modalId) {
+        // Открыть обычное модальное окно (форма, и т.п.)
+        var modal = $('#' + modalId);
+        modal.removeClass('out').fadeIn();
+    }
+
+    $('body').addClass('body_fix');
 });
+
 $('.close').on('click', function () {
-    var prt = $(this).parents('.modal');
-    prt.addClass('out')
+    var modal = $(this).closest('.modal');
+    var container = modal.find('.modal-video-fon');
+    if (container.length) {
+        container.html(''); // Останавливаем видео
+    }
+    modal.addClass('out');
     setTimeout(function () {
-        prt.fadeOut();
+        modal.fadeOut();
     }, 100);
+    $('body').removeClass('body_fix');
 });
+
 $(window).on('click', function (event) {
     $('.modal').each(function () {
-        var gtattr = $(this).attr('id');
-        var new_mod = $('#' + gtattr);
-        var md_cnt = $(new_mod).find('.modal-content');
-        if (event.target === $(md_cnt)[0]) {
+        var modal = $(this);
+        var content = modal.find('.modal-content')[0];
+
+        if (event.target === modal[0] || event.target === content) {
+            var container = modal.find('.modal-video-fon');
+            if (container.length) {
+                container.html('');
+            }
+            modal.addClass('out');
             setTimeout(function () {
-                $(new_mod).addClass('out');
-                $(new_mod).fadeOut()
-            }, 100)
+                modal.fadeOut();
+            }, 100);
+            $('body').removeClass('body_fix');
         }
-        if (event.target === this) {
-            setTimeout(function () {
-                $(new_mod).addClass('out');
-                $(new_mod).fadeOut()
-            }, 100)
-        }
-    })
+    });
 });
-
-
-
-// const projectItems = document.querySelectorAll('#project-list li');
-// const typeItems = document.querySelectorAll('#property-type li');
-// const range = document.getElementById('range-single');
-// const minVal = document.getElementById('min-val');
-// const totalPrice = document.getElementById('total-price');
-// const percentInput = document.getElementById('custom-percent');
-//
-// let selectedCommission = 2;
-//
-// projectItems.forEach(item => {
-//     item.addEventListener('click', () => {
-//         projectItems.forEach(i => i.classList.remove('active'));
-//         item.classList.add('active');
-//         selectedCommission = parseFloat(item.dataset.commission);
-//         if (!percentInput.value) {
-//             calculateTotal();
-//         }
-//     });
-// });
-//
-// typeItems.forEach(item => {
-//     item.addEventListener('click', () => {
-//         typeItems.forEach(i => i.classList.remove('active'));
-//         item.classList.add('active');
-//     });
-// });
-//
-// range.addEventListener('input', () => {
-//     const val = parseInt(range.value);
-//     minVal.textContent = `От ${val}`;
-//     calculateTotal();
-// });
-//
-// function updateSliderBackground() {
-//     const min = parseInt(range.min);
-//     const max = parseInt(range.max);
-//     const val = parseInt(range.value);
-//     const percent = ((val - min) / (max - min)) * 100;
-//     range.style.background = `linear-gradient(to right, #00AEEF 0%, #00AEEF ${percent}%, rgba(5,5,5,0) ${percent}%, rgba(5,5,5,0) 0%)`;
-//
-// }
-//
-// // Добавляем вызов при изменении
-// range.addEventListener('input', () => {
-//     updateSliderBackground();
-// });
-//
-// // При загрузке страницы
-// updateSliderBackground();
-//
-//
-//
-// percentInput.addEventListener('input', () => {
-//     calculateTotal();
-// });
-//
-// function calculateTotal() {
-//     const price = parseInt(range.value) * 1_000_000;
-//     const customPercent = parseFloat(percentInput.value.replace(",", "."));
-//     const commission = (!isNaN(customPercent) && customPercent > 0) ? customPercent : selectedCommission;
-//     const total = price + (price * commission / 100);
-//     totalPrice.textContent = total.toLocaleString('ru-RU') + " ₽";
-// }
-//
-// // Установка значений по умолчанию
-// projectItems[0].classList.add('active');
-// typeItems[0].classList.add('active');
-// calculateTotal();
-
-
-
-
 
 
 
@@ -411,7 +353,6 @@ $('.myBtn').on('click', function() {
     const newTitle = $(this).data('name'); // получаем значение из data-name
     $('.get-name').text(newTitle); // устанавливаем в заголовок
 });
-
 
 
 
