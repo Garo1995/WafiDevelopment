@@ -1391,7 +1391,11 @@ input[type="range"]::-webkit-slider-thumb {
         max-width: 20px;
         height: 20px;
     }
-
+    .technical-support:before {
+        top: 100px;
+        background-position: center;
+        height: 1628px;
+    }
 
 
 }

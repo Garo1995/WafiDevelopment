@@ -92,8 +92,8 @@ let cooperatingSwiper = new Swiper(".cooperating-slider", {
             spaceBetween: 10,
         },
         '320': {
-            slidesPerView: 1,
-            spaceBetween: 12,
+            slidesPerView: 2,
+            spaceBetween: 8,
         },
     },
 });
