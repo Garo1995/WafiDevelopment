@@ -241,6 +241,7 @@ p{
     margin-top: 80px;
     position: relative;
     z-index: 1;
+
 }
 
 .calculate-income-flex{
@@ -255,61 +256,79 @@ p{
     font-size: 15px;
     line-height: 20px;
 }
-
-
+.calculate-income-title{
+    gap: 20px;
+}
+.info-circle{
+    cursor: pointer;
+}
+.info-calculator{
+    background: #161616;
+    max-width: 346px;
+    width: 100%;
+    border-radius: 12px;
+    position: absolute;
+    display: none;
+    padding: 14px 14px 10px;
+    top: -2px;
+    margin-left: 60px;
+}
+.info-calculator:before{
+    content: url("../img/un.png");
+    position: absolute;
+    top: 15px;
+    left: -13px;
+}
+.info-circle-hov:hover .info-calculator{
+    display: block;
+}
+.info-calculator img{
+    position: relative;
+    z-index: 1;
+}
 .slider-container {
     max-width: 458px;
     width: 100%;
 }
-
+.webinar-broker{
+    gap: 15px;
+}
 
 .range-inputs {
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+}
+
+.value {
+    width: 100%;
+    font-weight: 500;
+    font-size: 15px;
+    color: #161616;
+    text-align: left;
+    padding: 14px 16px;
     border: 1px solid #0505051A;
     background: #FFFFFF00;
     border-radius: 50px;
 }
 
-.value {
-    font-weight: 500;
-    font-size: 15px;
-    color: #161616;
-    width: 50%;
-    text-align: left;
-    padding: 14px 16px;
-}
-
-.slider {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: unset;
-    border-radius: 2px;
-}
-
-.slider-progress {
-    position: absolute;
-    height: 3px;
-    background: #00AEEF;
-    border-radius: 2px;
-    bottom: 0;
-}
 
 input[type="range"] {
-    position: absolute;
-    width: 100%;
-    height: 0;
-    pointer-events: none;
     -webkit-appearance: none;
-    appearance: none;
-    background: none;
-}
+    width: 91%;
+    height: 3px;
+    border-radius: 3px;
+    background: linear-gradient(to right, #00AEEF 0%, #0505051A 0%);
+    outline: none;
+    transition: background 0.3s ease-in-out;
+    bottom: -2px;
+    position: absolute;
+    padding: 0;
+    left: 17px;
 
+}
 input[type="range"]::-webkit-slider-thumb {
     pointer-events: auto;
     -webkit-appearance: none;
@@ -321,9 +340,87 @@ input[type="range"]::-webkit-slider-thumb {
     cursor: pointer;
     box-shadow: 0px 2px 8px 0px #16161614;
     position: relative;
-    top: 22px;
-    margin-left: -2px;
+    top: 0;
 }
+
+.webinar-broker-mob{
+    display: none;
+}
+
+.video-project{
+    margin-top: 70px;
+}
+.video-project-rel{
+    margin-top: 50px;
+    position: relative;
+    padding-bottom: 50px;
+}
+.video-project-box{
+    cursor: pointer;
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 315px;
+}
+.video-project-box img{
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    object-position: center;
+    transition: 0.3s;
+}
+.video-project-box:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.55) 100%);
+    border-radius: 12px;
+}
+.video-project-box:after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url("../img/play.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 48px;
+    height: 48px;
+    transition: 0.3s;
+    z-index: 2;
+    opacity: 0.7;
+}
+.video-project-box:hover:after{
+    opacity: 1;
+    width: 56px;
+    height: 56px;
+}
+
+
+.video-project-rel .video-pagination{
+    bottom: 0;
+}
+.video-project-rel .swiper-pagination-bullet {
+    background: #00AEEF;
+    opacity: 0.15;
+}
+.video-project-rel .swiper-pagination-bullet-active {
+    background: #0697D8;
+    opacity: 1;
+}
+
+
+
+
+
+
+
+
+
 
 #max-val{
     position: relative;
@@ -399,7 +496,35 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 
-
+.select-project{
+    margin-top: 48px;
+}
+.select-project h4{
+    color: #6F6F6F;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+}
+.select-project-btn{
+    margin-top: 14px;
+}
+.select-project-btn ul{
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.select-project-btn ul li{
+    cursor: pointer;
+    transition: 0.3s;
+    background: #F8F8F8;
+    border-radius: 500px;
+    padding: 10px;
+    width: max-content;
+    white-space: nowrap;
+    font-weight: 500;
+    color: #6F6F6F;
+    font-size: 15px;
+}
+.select-project-btn ul li.active { background-color: #00AEEF; color: white; }
 
 .log-hig-one img{
     height: 36px;
@@ -1117,9 +1242,23 @@ input[type="range"]::-webkit-slider-thumb {
     .accordion-box:nth-child(1) {
         border-top: unset;
     }
-
-
-
+    .info-circle-hov:hover .info-calculator{
+        display: none;
+    }
+    .info-circle-active .info-calculator{
+        display: block!important;
+    }
+    .info-calculator {
+        max-width: 309px;
+        padding: 10px 10px 10px;
+        top: 60px;
+        margin-left: -10px;
+    }
+    .info-calculator:before {
+        top: -25px;
+        left: 9px;
+        transform: rotate(89deg);
+    }
 }
 @media (max-width: 767px){
     .cooperating-wrap{
@@ -1198,6 +1337,40 @@ input[type="range"]::-webkit-slider-thumb {
     .partner-photo img {
         border-radius: 12px;
     }
+    .webinar-broker .btn{
+        display: none;
+    }
+    .webinar-broker-mob {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    .info-calculator {
+        right: 0;
+    }
+    .info-calculator:before{
+        display: none;
+    }
+    .select-project-btn ul li {
+        padding: 8px;
+        font-size: 14px;
+    }
+    .video-project {
+        margin-top: 50px;
+    }
+    .video-project-rel {
+        margin-top: 30px;
+    }
+    .calculate-income-title{
+        align-items: flex-start;
+    }
+
+    .calculate-income-title h2{
+        max-width: 220px;
+    }
+
+
 }
 @media (max-width: 575px){
     .residential-box {

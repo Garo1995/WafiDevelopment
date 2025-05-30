@@ -139,38 +139,114 @@ $(window).on('click', function (event) {
 
 
 
-
-
-const rangeMin = document.getElementById('range-min');
-const rangeMax = document.getElementById('range-max');
-const progress = document.getElementById('progress');
+const projectItems = document.querySelectorAll('#project-list li');
+const typeItems = document.querySelectorAll('#property-type li');
+const range = document.getElementById('range-single');
 const minVal = document.getElementById('min-val');
-const maxVal = document.getElementById('max-val');
+const totalPrice = document.getElementById('total-price');
+const percentInput = document.getElementById('custom-percent');
 
-function updateSlider() {
-    let min = parseInt(rangeMin.value);
-    let max = parseInt(rangeMax.value);
+let selectedCommission = 2;
 
-    if (min > max - 1) {
-        rangeMin.value = max - 1;
-        min = max - 1;
-    }
-    if (max < min + 1) {
-        rangeMax.value = min + 1;
-        max = min + 1;
-    }
+projectItems.forEach(item => {
+    item.addEventListener('click', () => {
+        projectItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        selectedCommission = parseFloat(item.dataset.commission);
+        if (!percentInput.value) {
+            calculateTotal();
+        }
+    });
+});
 
-    const percentMin = (min / 50) * 100;
-    const percentMax = (max / 50) * 100;
+typeItems.forEach(item => {
+    item.addEventListener('click', () => {
+        typeItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+    });
+});
 
-    progress.style.left = percentMin + "%";
-    progress.style.width = (percentMax - percentMin) + "%";
+range.addEventListener('input', () => {
+    const val = parseInt(range.value);
+    minVal.textContent = `От ${val}`;
+    calculateTotal();
+});
 
-    minVal.innerText = "От " + min;
-    maxVal.innerText = "До " + max;
+function updateSliderBackground() {
+    const min = parseInt(range.min);
+    const max = parseInt(range.max);
+    const val = parseInt(range.value);
+    const percent = ((val - min) / (max - min)) * 100;
+    range.style.background = `linear-gradient(to right, #00AEEF 0%, #00AEEF ${percent}%, rgba(5,5,5,0) ${percent}%, rgba(5,5,5,0) 0%)`;
+
 }
 
-rangeMin.addEventListener("input", updateSlider);
-rangeMax.addEventListener("input", updateSlider);
+// Добавляем вызов при изменении
+range.addEventListener('input', () => {
+    updateSliderBackground();
+});
 
-updateSlider();
+// При загрузке страницы
+updateSliderBackground();
+
+
+
+percentInput.addEventListener('input', () => {
+    calculateTotal();
+});
+
+function calculateTotal() {
+    const price = parseInt(range.value) * 1_000_000;
+    const customPercent = parseFloat(percentInput.value.replace(",", "."));
+    const commission = (!isNaN(customPercent) && customPercent > 0) ? customPercent : selectedCommission;
+    const total = price + (price * commission / 100);
+    totalPrice.textContent = total.toLocaleString('ru-RU') + " ₽";
+}
+
+// Установка значений по умолчанию
+projectItems[0].classList.add('active');
+typeItems[0].classList.add('active');
+calculateTotal();
+
+
+
+
+
+
+
+
+
+let projectSwiper = new Swiper(".video-project-slider", {
+    slidesPerView: 4,
+    spaceBetween: 24,
+
+    breakpoints: {
+        '1299': {
+            slidesPerView: 4,
+            spaceBetween: 24,
+        },
+        '1020': {
+            slidesPerView: 3,
+            spaceBetween: 20,
+        },
+        '500': {
+            slidesPerView: 2,
+            spaceBetween: 10,
+        },
+        '320': {
+            slidesPerView: 1,
+            spaceBetween: 12,
+        },
+    },
+    pagination: {
+        el: ".video-pagination",
+        clickable: true,
+    },
+});
+
+
+
+
+$('.info-circle-hov').on('click', function () {
+    $(this).toggleClass('info-circle-active');
+})

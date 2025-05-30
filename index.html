@@ -112,50 +112,78 @@
         </div>
 
         <div class="calculate-income">
-            <h2>Расчитайте свой доход</h2>
-            <div class="calculate-income-flex G-align-end ">
+            <div class="calculate-income-title G-align-center">
+                <h2>Расчитайте свой доход</h2>
+                <div class="info-circle-hov">
+                    <div class="info-circle G-flex">
+                        <img src="./assets/img/info-circle.svg" alt="info">
+                    </div>
+                    <div class="info-calculator">
+                        <img src="./assets/img/calculator.png" alt="calculator">
+                    </div>
+                </div>
+            </div>
 
+            <div class="select-project">
+                <h4>Выберите проект</h4>
+                <div class="select-project-btn G-align-center">
+                    <ul class="G-align-center" id="project-list">
+                        <li data-commission="2">Сиреневый парк</li>
+                        <li data-commission="1.8">Afi tower</li>
+                        <li data-commission="1.9">Afi park воронцовский</li>
+                        <li data-commission="2.2">Одинбург</li>
+                        <li data-commission="2.1">Резиденция архитекторов</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="select-project">
+                <h4>Тип недвижимости</h4>
+                <div class="select-project-btn">
+                    <ul class="G-align-center" id="property-type">
+                        <li data-type="flat">Квартиры</li>
+                        <li data-type="parking">Машиноместа</li>
+                        <li data-type="storage">Кладовые</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="calculate-income-flex G-align-end">
                 <div class="slider-container">
                     <h4>Стоимость, млн ₽</h4>
                     <div class="range-inputs">
                         <div class="value" id="min-val">От 10</div>
-                        <div class="value" id="max-val">До 20</div>
-                        <div class="slider"></div>
-                        <div class="slider-progress" id="progress"></div>
-                        <input type="range" id="range-min" min="0" max="50" value="10" step="1">
-                        <input type="range" id="range-max" min="0" max="50" value="20" step="1">
+                        <input type="range" id="range-single" min="1" max="100" value="10" step="1">
                     </div>
                 </div>
 
                 <div class="percentage-cnt">
                     <h4>Процент комиссии</h4>
                     <div class="percentage-flex G-align-center">
-                        <div class="percentage-box G-center">
-                            <span>5%</span>
-                        </div>
-                        <div class="percentage-box G-center">
-                            <span>10%</span>
-                        </div>
-                        <div class="percentage-box G-center">
-                            <span>15%</span>
-                        </div>
                         <div class="percentage-count G-center">
-                            <input type="text" placeholder="Указать свой %">
+                            <input type="text" id="custom-percent" placeholder="Указать свой %">
                         </div>
                     </div>
                 </div>
+
                 <div class="percentage-price G-align-center">
-                    <strong class="last-price">10 200 000</strong>
+                    <strong class="last-price" id="total-price">10 200 000</strong>
                     <button data-val="modal" class="open_modal btn G-center">Стать партнером</button>
                 </div>
             </div>
+
+
         </div>
     </div>
 </section>
 
 <section class="cooperating-main">
     <div class="container">
-        <h2>С нами уже сотрудничают</h2>
+        <div class="webinar-broker G-flex-wrap G-align-center G-justify-between">
+            <h2>С нами уже сотрудничают</h2>
+            <button class="btn">Запись на вебинар или брокер тур</button>
+        </div>
+
         <div class="cooperating-wrap G-flex-wrap">
             <div class="cooperating-box log-hig-one G-center">
                 <img src="./assets/img/partners-1.png" alt="partners">
@@ -182,8 +210,6 @@
                 <img src="./assets/img/partners-8.png" alt="partners">
             </div>
         </div>
-
-
         <div class="cooperating-mobile">
             <div class="swiper cooperating-slider">
                 <div class="swiper-wrapper">
@@ -224,6 +250,9 @@
                 </div>
             </div>
             <div class="cooperating-pagination swiper-pagination"></div>
+        </div>
+        <div class="webinar-broker-mob">
+            <button class="btn">Запись на вебинар или брокер тур</button>
         </div>
     </div>
 </section>
@@ -390,6 +419,40 @@
     </div>
 </section>
 
+<section class="video-project">
+    <div class="container">
+        <h2>Видео о проектах</h2>
+
+       <div class="video-project-rel">
+           <div class="swiper video-project-slider">
+               <div class="swiper-wrapper">
+                   <div class="swiper-slide">
+                       <div class="video-project-box">
+                           <img src="./assets/img/video-pic-1.webp" alt="video">
+                       </div>
+                   </div>
+                   <div class="swiper-slide">
+                       <div class="video-project-box">
+                           <img src="./assets/img/video-pic-2.webp" alt="video">
+                       </div>
+                   </div>
+                   <div class="swiper-slide">
+                       <div class="video-project-box">
+                           <img src="./assets/img/video-pic-3.webp" alt="video">
+                       </div>
+                   </div>
+                   <div class="swiper-slide">
+                       <div class="video-project-box">
+                           <img src="./assets/img/video-pic-4.webp" alt="video">
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="video-pagination swiper-pagination"></div>
+
+       </div>
+    </div>
+</section>
 
 <section class="faq">
     <div class="container">
