@@ -139,80 +139,177 @@ $(window).on('click', function (event) {
 
 
 
-const projectItems = document.querySelectorAll('#project-list li');
-const typeItems = document.querySelectorAll('#property-type li');
+// const projectItems = document.querySelectorAll('#project-list li');
+// const typeItems = document.querySelectorAll('#property-type li');
+// const range = document.getElementById('range-single');
+// const minVal = document.getElementById('min-val');
+// const totalPrice = document.getElementById('total-price');
+// const percentInput = document.getElementById('custom-percent');
+//
+// let selectedCommission = 2;
+//
+// projectItems.forEach(item => {
+//     item.addEventListener('click', () => {
+//         projectItems.forEach(i => i.classList.remove('active'));
+//         item.classList.add('active');
+//         selectedCommission = parseFloat(item.dataset.commission);
+//         if (!percentInput.value) {
+//             calculateTotal();
+//         }
+//     });
+// });
+//
+// typeItems.forEach(item => {
+//     item.addEventListener('click', () => {
+//         typeItems.forEach(i => i.classList.remove('active'));
+//         item.classList.add('active');
+//     });
+// });
+//
+// range.addEventListener('input', () => {
+//     const val = parseInt(range.value);
+//     minVal.textContent = `От ${val}`;
+//     calculateTotal();
+// });
+//
+// function updateSliderBackground() {
+//     const min = parseInt(range.min);
+//     const max = parseInt(range.max);
+//     const val = parseInt(range.value);
+//     const percent = ((val - min) / (max - min)) * 100;
+//     range.style.background = `linear-gradient(to right, #00AEEF 0%, #00AEEF ${percent}%, rgba(5,5,5,0) ${percent}%, rgba(5,5,5,0) 0%)`;
+//
+// }
+//
+// // Добавляем вызов при изменении
+// range.addEventListener('input', () => {
+//     updateSliderBackground();
+// });
+//
+// // При загрузке страницы
+// updateSliderBackground();
+//
+//
+//
+// percentInput.addEventListener('input', () => {
+//     calculateTotal();
+// });
+//
+// function calculateTotal() {
+//     const price = parseInt(range.value) * 1_000_000;
+//     const customPercent = parseFloat(percentInput.value.replace(",", "."));
+//     const commission = (!isNaN(customPercent) && customPercent > 0) ? customPercent : selectedCommission;
+//     const total = price + (price * commission / 100);
+//     totalPrice.textContent = total.toLocaleString('ru-RU') + " ₽";
+// }
+//
+// // Установка значений по умолчанию
+// projectItems[0].classList.add('active');
+// typeItems[0].classList.add('active');
+// calculateTotal();
+
+
+
+
 const range = document.getElementById('range-single');
 const minVal = document.getElementById('min-val');
-const totalPrice = document.getElementById('total-price');
-const percentInput = document.getElementById('custom-percent');
+const finalPrice = document.getElementById('final-price');
+const customPercentInput = document.getElementById('custom-percent'); // добавил
 
-let selectedCommission = 2;
+let selectedProject = null;
+let selectedType = null;
 
-projectItems.forEach(item => {
-    item.addEventListener('click', () => {
-        projectItems.forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
-        selectedCommission = parseFloat(item.dataset.commission);
-        if (!percentInput.value) {
-            calculateTotal();
-        }
+const commissionTable = {
+    "siren": {
+        "kvartira": 3,
+        "mesto": 1
+    },
+    "afi-tower": {
+        "kvartira": 3.5,
+        "mesto": 2
+    },
+    "afi-vorontsovsky": {
+        "kvartira": 2,
+        "mesto": 2,
+        "klad": 2
+    },
+    "odinburg": {
+        "kvartira": 3,
+        "mesto": 2
+    },
+    "rezidenty": {
+        "kvartira": 3,
+        "mesto": 1,
+        "klad": 1
+    }
+};
+
+function updateSliderUI() {
+    const val = parseInt(range.value);
+    const percent = ((val - range.min) / (range.max - range.min)) * 100;
+    range.style.background = `linear-gradient(to right, #00AEEF 0%, #00AEEF ${percent}%, #ccc ${percent}%, #ccc 100%)`;
+    minVal.innerText = "От " + val;
+}
+
+function calculateFinal() {
+    const val = parseInt(range.value);
+    const customPercent = parseFloat(customPercentInput.value.replace(',', '.'));
+
+    if (!isNaN(customPercent)) {
+        const total = val * 1_000_000 * (1 + customPercent / 100);
+        finalPrice.innerText = `${total.toLocaleString('ru-RU')}`;
+        return;
+    }
+
+    if (!selectedProject || !selectedType) {
+        finalPrice.innerText = "";
+        return;
+    }
+
+    const projectData = commissionTable[selectedProject];
+    const percent = projectData?.[selectedType];
+
+    // Если для выбранного типа нет процентов, например "Кладовые"
+    if (percent === undefined) {
+        const total = val * 1_000_000;
+        finalPrice.innerText = `${total.toLocaleString('ru-RU')}`;
+        return;
+    }
+
+    const total = val * 1_000_000 * (1 + percent / 100);
+    finalPrice.innerText = `${total.toLocaleString('ru-RU')}`;
+}
+
+document.querySelectorAll("#projects li").forEach(li => {
+    li.addEventListener("click", () => {
+        document.querySelectorAll("#projects li").forEach(item => item.classList.remove("active"));
+        li.classList.add("active");
+        selectedProject = li.getAttribute("data-project");
+        calculateFinal();
     });
 });
 
-typeItems.forEach(item => {
-    item.addEventListener('click', () => {
-        typeItems.forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
+document.querySelectorAll("#types li").forEach(li => {
+    li.addEventListener("click", () => {
+        document.querySelectorAll("#types li").forEach(item => item.classList.remove("active"));
+        li.classList.add("active");
+        selectedType = li.getAttribute("data-type");
+        calculateFinal();
     });
 });
 
-range.addEventListener('input', () => {
-    const val = parseInt(range.value);
-    minVal.textContent = `От ${val}`;
-    calculateTotal();
+range.addEventListener("input", () => {
+    updateSliderUI();
+    calculateFinal();
 });
 
-function updateSliderBackground() {
-    const min = parseInt(range.min);
-    const max = parseInt(range.max);
-    const val = parseInt(range.value);
-    const percent = ((val - min) / (max - min)) * 100;
-    range.style.background = `linear-gradient(to right, #00AEEF 0%, #00AEEF ${percent}%, rgba(5,5,5,0) ${percent}%, rgba(5,5,5,0) 0%)`;
-
-}
-
-// Добавляем вызов при изменении
-range.addEventListener('input', () => {
-    updateSliderBackground();
+// Добавлено: при вводе своего процента
+customPercentInput.addEventListener("input", () => {
+    calculateFinal();
 });
 
-// При загрузке страницы
-updateSliderBackground();
-
-
-
-percentInput.addEventListener('input', () => {
-    calculateTotal();
-});
-
-function calculateTotal() {
-    const price = parseInt(range.value) * 1_000_000;
-    const customPercent = parseFloat(percentInput.value.replace(",", "."));
-    const commission = (!isNaN(customPercent) && customPercent > 0) ? customPercent : selectedCommission;
-    const total = price + (price * commission / 100);
-    totalPrice.textContent = total.toLocaleString('ru-RU') + " ₽";
-}
-
-// Установка значений по умолчанию
-projectItems[0].classList.add('active');
-typeItems[0].classList.add('active');
-calculateTotal();
-
-
-
-
-
-
+updateSliderUI();
+calculateFinal();
 
 
 

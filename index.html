@@ -127,12 +127,12 @@
             <div class="select-project">
                 <h4>Выберите проект</h4>
                 <div class="select-project-btn G-align-center">
-                    <ul class="G-align-center" id="project-list">
-                        <li data-commission="2">Сиреневый парк</li>
-                        <li data-commission="1.8">Afi tower</li>
-                        <li data-commission="1.9">Afi park воронцовский</li>
-                        <li data-commission="2.2">Одинбург</li>
-                        <li data-commission="2.1">Резиденция архитекторов</li>
+                    <ul id="projects" class="G-align-center">
+                        <li data-project="siren">Сиреневый парк</li>
+                        <li data-project="afi-tower">Afi tower</li>
+                        <li data-project="afi-vorontsovsky">Afi park воронцовский</li>
+                        <li data-project="odinburg">Одинбург</li>
+                        <li data-project="rezidenty">Резиденция архитекторов</li>
                     </ul>
                 </div>
             </div>
@@ -140,10 +140,10 @@
             <div class="select-project">
                 <h4>Тип недвижимости</h4>
                 <div class="select-project-btn">
-                    <ul class="G-align-center" id="property-type">
-                        <li data-type="flat">Квартиры</li>
-                        <li data-type="parking">Машиноместа</li>
-                        <li data-type="storage">Кладовые</li>
+                    <ul id="types" class="G-align-center">
+                        <li data-type="kvartira">Квартиры</li>
+                        <li data-type="mesto">Машиноместа</li>
+                        <li data-type="klad">Кладовые</li>
                     </ul>
                 </div>
             </div>
@@ -153,6 +153,7 @@
                     <h4>Стоимость, млн ₽</h4>
                     <div class="range-inputs">
                         <div class="value" id="min-val">От 10</div>
+                        <div class="slider-progress" id="progress"></div>
                         <input type="range" id="range-single" min="1" max="100" value="10" step="1">
                     </div>
                 </div>
@@ -167,7 +168,8 @@
                 </div>
 
                 <div class="percentage-price G-align-center">
-                    <strong class="last-price" id="total-price">10 200 000</strong>
+                    <strong class="last-price" id="final-price"></strong>
+
                     <button data-val="modal" class="open_modal btn G-center">Стать партнером</button>
                 </div>
             </div>
