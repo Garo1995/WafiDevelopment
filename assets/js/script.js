@@ -402,3 +402,17 @@ let projectSwiper = new Swiper(".video-project-slider", {
 $('.info-circle-hov').on('click', function () {
     $(this).toggleClass('info-circle-active');
 })
+
+
+
+
+
+$('.myBtn').on('click', function() {
+    const newTitle = $(this).data('name'); // получаем значение из data-name
+    $('.get-name').text(newTitle); // устанавливаем в заголовок
+});
+
+
+
+
+
