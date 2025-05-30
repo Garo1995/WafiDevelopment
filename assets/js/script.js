@@ -225,7 +225,7 @@ const commissionTable = {
         "mesto": 1
     },
     "afi-tower": {
-        "kvartira": 3.5,
+        "kvartira": 3.5, // используем 3.5 — можно потом добавить логику выбора
         "mesto": 2
     },
     "afi-vorontsovsky": {
@@ -234,8 +234,9 @@ const commissionTable = {
         "klad": 2
     },
     "odinburg": {
-        "kvartira": 3,
+        "kvartira": 3, // тоже 3, не 4.5
         "mesto": 2
+        // Кладовых нет — не добавляем
     },
     "rezidenty": {
         "kvartira": 3,
@@ -275,9 +276,15 @@ function calculateFinal() {
         finalPrice.innerText = `${total.toLocaleString('ru-RU')}`;
         return;
     }
+    const commission = val * 1_000_000 * (percent / 100);
+    finalPrice.innerText = `${Math.round(commission).toLocaleString('ru-RU')} ₽`;
 
-    const total = val * 1_000_000 * (1 + percent / 100);
-    finalPrice.innerText = `${total.toLocaleString('ru-RU')}`;
+
+    if (customPercent) {
+        const customCommission = val * 1_000_000 * (customPercent / 100);
+        finalPrice.innerText = `${Math.round(customCommission).toLocaleString('ru-RU')} ₽`;
+        return;
+    }
 }
 
 document.querySelectorAll("#projects li").forEach(li => {
@@ -310,6 +317,43 @@ customPercentInput.addEventListener("input", () => {
 
 updateSliderUI();
 calculateFinal();
+
+function updateTypeVisibility() {
+    const kladLi = document.querySelector('#types li[data-type="klad"]');
+    if (!kladLi) return;
+
+    if (selectedProject === "siren" || selectedProject === "afi-tower" || selectedProject === "odinburg") {
+        kladLi.style.display = "none";
+
+        // Если сейчас выбран "клад" — сбросим выбор
+        if (selectedType === "klad") {
+            selectedType = null;
+            document.querySelectorAll("#types li").forEach(li => li.classList.remove("active"));
+        }
+    } else {
+        kladLi.style.display = "list-item";
+    }
+}
+
+document.querySelectorAll("#projects li").forEach(li => {
+    li.addEventListener("click", () => {
+        document.querySelectorAll("#projects li").forEach(item => item.classList.remove("active"));
+        li.classList.add("active");
+        selectedProject = li.getAttribute("data-project");
+
+        updateTypeVisibility();  // <-- сюда добавляем вызов
+        calculateFinal();
+    });
+});
+
+
+
+
+
+
+
+
+
 
 
 
