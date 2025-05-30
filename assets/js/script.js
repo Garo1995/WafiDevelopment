@@ -277,12 +277,12 @@ function calculateFinal() {
         return;
     }
     const commission = val * 1_000_000 * (percent / 100);
-    finalPrice.innerText = `${Math.round(commission).toLocaleString('ru-RU')} ₽`;
+    finalPrice.innerText = `${Math.round(commission).toLocaleString('ru-RU')}`;
 
 
     if (customPercent) {
         const customCommission = val * 1_000_000 * (customPercent / 100);
-        finalPrice.innerText = `${Math.round(customCommission).toLocaleString('ru-RU')} ₽`;
+        finalPrice.innerText = `${Math.round(customCommission).toLocaleString('ru-RU')}`;
         return;
     }
 }
